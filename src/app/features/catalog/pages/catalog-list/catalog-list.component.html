@@ -3,12 +3,10 @@
   <cm-catalog-item *ngFor="let item of comics" [comic]="item"></cm-catalog-item>
 </div>
 
-<br />
-
 <cm-pagination
   [(page)]="page"
-  [totalPages]="(catalogService.pagination$ | async)?.totalPages ?? 0"
+  [totalElements]="(catalogService.pagination$ | async)?.total ?? 0"
   (pageChange)="changePage()"
-  *ngIf="totalPages > 1"
+  *ngIf="page.length > 1"
 ></cm-pagination>
 <cm-loader *ngIf="catalogService.loading$ | async"></cm-loader>

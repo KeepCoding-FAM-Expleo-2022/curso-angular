@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { MenuElement } from '@core/interfaces/menu-element.interface';
 
 @Component({
@@ -6,7 +15,7 @@ import { MenuElement } from '@core/interfaces/menu-element.interface';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   // Data binding entrada
   @Input()
   menuElements: MenuElement[] = [];
@@ -28,6 +37,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     console.log('ngOnInit');
   }
+
+  ngOnDestroy(): void {}
 
   rightElementClick() {
     console.log('click');

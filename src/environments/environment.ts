@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   api_server: 'http://gateway.marvel.com',
-  public_key: '',
-  hash: '',
+  public_key: '0c3cd54062991348bd11d23c2cfcecff',
+  hash: '032aeb1bea92edac93b800f142999875',
   ts: '123456789'
 };
 

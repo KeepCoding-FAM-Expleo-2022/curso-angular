@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'cm-pagination',
@@ -6,37 +7,24 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent implements OnInit {
-  private _totalPages: number = 1;
   @Input()
-  set totalPages(value: number) {
-    this._totalPages = value;
-    this.generateNumbersPages();
-  }
-  get totalPages(): number {
-    return this._totalPages;
-  }
+  page!: PageEvent;
 
-  @Input()
-  page: number = 1;
   @Output()
-  pageChange: EventEmitter<number> = new EventEmitter<number>();
+  pageChange: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
 
-  numbers: number[] = [1];
+  @Input()
+  limit: number = 20;
+
+  @Input()
+  totalElements: number = 0;
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  private generateNumbersPages() {
-    this.numbers = Array(this.totalPages)
-      .fill(0)
-      .map((_, i) => i + 1);
-  }
-
-  clickPage(page: number) {
-    if (page > 0 && page <= this.totalPages) {
-      this.page = page;
-      this.pageChange.emit(this.page);
-    }
+  clickPage(page: PageEvent) {
+    this.page = page;
+    this.pageChange.emit(page);
   }
 }

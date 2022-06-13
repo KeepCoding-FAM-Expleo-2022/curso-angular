@@ -1,10 +1,7 @@
-<div class="pagination">
-  <a (click)="clickPage(page-1)">&laquo;</a>
-  <a
-    (click)="clickPage(p)"
-    *ngFor="let p of numbers"
-    [ngClass]="{ active: p === page }"
-    >{{ p }}</a
-  >
-  <a (click)="clickPage(page+1)">&raquo;</a>
-</div>
+<mat-paginator
+  [length]="totalElements"
+  [pageSize]="limit"
+  (page)="clickPage($event)"
+  aria-label="Select page"
+  [pageSizeOptions]="[20]"
+></mat-paginator>

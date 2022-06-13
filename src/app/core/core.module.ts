@@ -7,11 +7,12 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { HttpErrorInterceptor } from './interceptor/http-error.interceptor';
 import { CustomErrorHandler } from './handler/custom-error.handler';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import { AngularMaterialModule } from './angular-material.module';
 
 @NgModule({
   declarations: [HeaderComponent, NotFoundPageComponent],
-  imports: [CommonModule, RouterModule],
-  exports: [HeaderComponent],
+  imports: [CommonModule, RouterModule, AngularMaterialModule],
+  exports: [HeaderComponent, AngularMaterialModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { Comic } from '@core/models/comic.model';
 import { CatalogService } from '../../services/catalog.service';
 
@@ -9,8 +10,7 @@ import { CatalogService } from '../../services/catalog.service';
 })
 export class CatalogListComponent implements OnInit {
   comics: Comic[] = [];
-  page: number = 1;
-  totalPages: number = 1;
+  page: PageEvent = new PageEvent();
   actualFilters: { [term: string]: any } = {};
   limit: number = 20;
 
@@ -23,14 +23,13 @@ export class CatalogListComponent implements OnInit {
       }
     });
     this.catalogService.pagination$.subscribe((pagination) => {
-      this.page = pagination.page;
-      this.totalPages = pagination.totalPages;
-      this.limit = pagination.limit;
+      this.page.pageIndex = pagination.page;
+      this.page.length = pagination.total;
+      this.page.pageSize = pagination.limit;
     });
   }
 
   search(search: { [term: string]: any }) {
-    console.warn('Búsqueda', search);
     this.actualFilters = search;
     this.catalogService.searchComic(this.actualFilters);
   }
@@ -38,7 +37,7 @@ export class CatalogListComponent implements OnInit {
   changePage() {
     this.actualFilters = {
       ...this.actualFilters,
-      offset: (this.page - 1) * this.limit, // 20 es el limit
+      offset: (this.page.pageIndex) * this.page.pageSize, // 20 es el limit
     };
     this.search(this.actualFilters);
   }

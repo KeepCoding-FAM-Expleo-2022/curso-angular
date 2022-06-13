@@ -35,13 +35,11 @@ export class CatalogService {
         (resp) => {
           this.comicState.set(resp.results);
           this.comicState.setPagination({
-            page: resp.offset / resp.limit + 1,
-            totalPages: Math.ceil(resp.total / resp.limit),
+            page: resp.offset / resp.limit,
+            total: resp.total,
             limit: resp.limit,
           });
-          // this.comicState.setLoading(false);
         },
-        // (error) => this.comicState.setLoading(false)
       );
   }
 }

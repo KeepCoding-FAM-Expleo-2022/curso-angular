@@ -1,6 +1,19 @@
-<ul>
-  <li *ngFor="let item of menuElements">
-    <a [routerLink]="item.path" routerLinkActive="active">{{item.title}}</a>
-  </li>
-  <li style="float:right"><a (click)="rightElementClick()">Logout</a></li>
-</ul>
+<mat-toolbar>
+  <span>Marvel Comics</span>
+  <a
+    mat-button
+    *ngFor="let item of menuElements"
+    [routerLink]="item.path"
+    routerLinkActive="active"
+    >{{ item.title }}</a
+  >
+  <span class="example-spacer"></span>
+  <button
+    mat-icon-button
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+    (click)="rightElementClick()"
+  >
+    <mat-icon>favorite</mat-icon>
+  </button>
+</mat-toolbar>

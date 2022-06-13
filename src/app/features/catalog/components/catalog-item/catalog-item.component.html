@@ -1,4 +1,29 @@
-<div class="card" [cmCursorChange]="'help'">
+<mat-card cmCursorChange class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{ comic.title | uppercase }}</mat-card-title>
+    <mat-card-subtitle>
+      {{ comic.onsaleDate | date: "longDate" }}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <img
+    mat-card-image
+    [src]="
+      comic.images[0].path + '/portrait_fantastic.' + comic.images[0].extension
+    "
+    alt="Portada"
+    *ngIf="
+      comic.images && comic.images.length > 0 && comic.images[0].path;
+      else noImage
+    "
+  />
+  <mat-card-content>
+    <p>
+      {{ comic.description }}
+    </p>
+  </mat-card-content>
+</mat-card>
+
+<!-- <div class="card" [cmCursorChange]="'help'">
   <img
     [src]="
       comic.images[0].path + '/portrait_fantastic.' + comic.images[0].extension
@@ -20,10 +45,11 @@
     </div>
     <p>{{ comic.description }}</p>
   </div>
-</div>
+</div> -->
 
 <ng-template #noImage>
   <img
+    mat-card-image
     src="https://upload.wikimedia.org/wikipedia/commons/0/0a/No-image-available.png"
     alt="Sin Portada"
     style="width: 100%"

@@ -17,7 +17,7 @@ export class ComicStateService implements StateService<Comic> {
   private selectedElement$: BehaviorSubject<Comic | null> =
     new BehaviorSubject<Comic | null>(null);
   private pagination$: BehaviorSubject<Pagination> =
-    new BehaviorSubject<Pagination>({ page: 1, totalPages: 1, limit: 20 });
+    new BehaviorSubject<Pagination>({ page: 1, total: 1, limit: 20 });
 
   constructor() {}
 
