@@ -15,6 +15,7 @@ const routes: Routes = [
         (m) => m.CollectionModule
       ),
   },
+  { path: '', redirectTo: 'catalog', pathMatch: 'full' },
   { path: '**', component: NotFoundPageComponent },
 ];
 
